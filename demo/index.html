@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Lit + TS</title>
+    <style>
+      html {
+        font-size: 10px; /* This is to match petabox's base font size */
+      }
+
+      body {
+        background: #41d0fc;
+      }
+      form {
+        display: block;
+        padding: 25px;
+        color: var(--iaux-search-widget-text-color, #000);
+        width: 700px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+      }
+      #input-search {
+        width: 80%;
+      }
+      #search-btn {
+        padding: 10px;
+        background: #009cff;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        margin: 5px;
+        float: right;
+      }
+      input[type="text"] {
+        padding: 10px;
+        margin: 5px;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+      }
+
+      input[type="text"]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ia-search-main></ia-search-main>
+      <script type="module">
+    /* eslint-disable */
+    console.log("dssd")
+
+      import { html, render } from "lit-html";
+      import "../src/components/ia-search-main.ts";
+      var queryParam = decodeURIComponent(window.location.search);
+      queryParam = new URLSearchParams(queryParam).get("query");
+
+      var searchComponent = document.querySelector('ia-search-main');
+      if(searchComponent){
+      }else{
+        searchComponent = document.createElement("ia-search-main");
+        document.body.appendChild(searchComponent)
+        console.log(searchComponent);
+      }
+      searchComponent = document.querySelector('ia-search-main');
+      console.log(searchComponent)
+      searchComponent.query = queryParam
+      searchComponent.heading = "advanced search query"
+
+      render(
+        html`
+        <form action="" role="search method="get">
+          <h1>${title}</h1>
+          <input
+            type="text"
+            name="query"
+            id="input-search"
+            value="${queryParam}"
+            placeholder="Please enter search query"
+          />
+          <input type="submit" id="search-btn" />
+        </form>
+        <ia-search-main 
+          title="Advanced Search Option" 
+          query="${queryParam}"
+        >
+        </ia-search-main>
+          `,
+        document.body
+      );
+    </script>
+    <ia-search-main></ia-search-main>
+
+  </body>
+</html>
